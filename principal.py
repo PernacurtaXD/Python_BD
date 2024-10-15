@@ -30,7 +30,7 @@ class Cliente(Base):
         self.senha = senha
 
 
-Base.metadata.create_allI(bind=MEU_BANCO)
+Base.metadata.create_all(bind=MEU_BANCO)
 
 
 #CRUD
@@ -45,3 +45,12 @@ session.add(cliente)
 session.commit()
 
 #Read - Select  - Consulta
+print("\nExibindo dados dos clientes")
+lista_clientes = session.query(Cliente).all()
+
+for cliente in lista_clientes:
+    print(f"{cliente.id} - {cliente.nome} - {cliente.email} - {cliente.senha}")
+
+#U - UPDATE - Atualizar 
+print("Atualizando dados do usuário")
+email_cliente = input("Digite o email do cliente que será atualizado:")
